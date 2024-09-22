@@ -1,9 +1,12 @@
 import React from "react";
+import NewButton from "./new-button";
+import OrganisationsList from "./lists";
 
 const Sidebar = () => {
   return (
-    <aside className="h-full min-w-14 border-r bg-background">
-      <div className="flex h-14 items-center border-b px-4">Side</div>
+    <aside className="flex h-full min-w-14 flex-col items-center gap-y-2 border-r bg-background bg-blue-950 p-3 text-white">
+      <OrganisationsList />
+      <NewButton />
     </aside>
   );
 };
