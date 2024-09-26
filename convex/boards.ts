@@ -1,36 +1,21 @@
-import { mutation } from "./_generated/server";
+import { query } from "./_generated/server";
 import { ConvexError, v } from "convex/values";
 
-const images = [
-  "/placeholder/1.svg",
-  "/placeholder/2.svg",
-  "/placeholder/3.svg",
-  "/placeholder/4.svg",
-  "/placeholder/5.svg",
-  "/placeholder/6.svg",
-  "/placeholder/7.svg",
-];
-
-export const create = mutation({
+export const get = query({
   args: {
     orgId: v.string(),
-    title: v.string(),
   },
   handler: async (ctx, args) => {
     const identity = await ctx.auth.getUserIdentity();
     if (!identity) {
-      throw new ConvexError("You must be logged in to create a board");
+      throw new ConvexError("You must be logged in to get boards");
     }
+    const boards = await ctx.db
+      .query("boards")
+      .withIndex("by_org", (q) => q.eq("orgId", args.orgId))
+      .order("desc")
+      .collect();
 
-    const randomImage = images[Math.floor(Math.random() * images.length)];
-    const board = await ctx.db.insert("boards", {
-      title: args.title,
-      orgId: args.orgId,
-      authorId: identity.subject,
-      authorName: identity.name || "",
-      imageUrl: randomImage,
-    });
-
-    return board;
+    return boards;
   },
 });
