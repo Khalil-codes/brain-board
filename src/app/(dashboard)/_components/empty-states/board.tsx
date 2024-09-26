@@ -10,7 +10,7 @@ import useConvexMutation from "@/hooks/use-api-mutation";
 import { toast } from "sonner";
 
 const EmptyBoard = () => {
-  const { pending, mutate: create } = useConvexMutation(api.boards.create);
+  const { pending, mutate: create } = useConvexMutation(api.board.create);
   const { organization } = useOrganization();
 
   const handleClick = async () => {
