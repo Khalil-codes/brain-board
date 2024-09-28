@@ -1,17 +1,19 @@
+import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { useAuth } from "@clerk/nextjs";
 import { Doc } from "@convex/_generated/dataModel";
 import { formatDistanceToNow } from "date-fns";
-import { Dot, Edit } from "lucide-react";
+import { Star } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
 type Props = {
   board: Doc<"boards">;
+  isFavorite?: boolean;
 };
 
-const BoardCard = ({ board }: Props) => {
+const BoardCard = ({ board, isFavorite }: Props) => {
   const { userId } = useAuth();
   return (
     <Link href={`/board/${board._id}`}>
@@ -30,7 +32,7 @@ const BoardCard = ({ board }: Props) => {
             {/* Controls */}
           </div>
         </div>
-        <div className="p-3">
+        <div className="relative p-3">
           <h3 className="max-w-[calc(100%-1.25rem)] truncate text-sm">
             {board.title}
           </h3>
@@ -40,6 +42,19 @@ const BoardCard = ({ board }: Props) => {
               addSuffix: true,
             })}
           </p>
+          <Button
+            variant="link"
+            size="icon"
+            disabled={false}
+            className={cn(
+              "absolute right-0 top-1.5 text-muted-foreground opacity-0 transition hover:text-blue-600 group-hover:opacity-100",
+              { "cursor-not-allowed opacity-75": false }
+            )}>
+            <Star
+              size={16}
+              className={isFavorite ? "fill-blue-600 text-blue-600" : ""}
+            />
+          </Button>
         </div>
       </div>
     </Link>
