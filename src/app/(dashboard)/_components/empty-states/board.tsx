@@ -19,7 +19,7 @@ const EmptyBoard = () => {
     toast.promise(
       async () =>
         await create({
-          title: "My First Board",
+          title: "Untitled",
           orgId: organization.id,
         }),
       {

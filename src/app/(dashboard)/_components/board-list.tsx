@@ -7,6 +7,7 @@ import { useQuery } from "convex/react";
 import EmptyFavorites from "./empty-states/favorites";
 import EmptyBoard from "./empty-states/board";
 import BoardCard from "./board-card";
+import CreateBoardButton from "./create-board";
 
 type Props = {
   organizationId: string;
@@ -41,6 +42,7 @@ const BoardList = ({ organizationId, query }: Props) => {
         {query.favorites ? "Favorite" : "Team"} Boards
       </h2>
       <div className="mt-8 grid grid-cols-1 gap-5 pb-10 sm:grid-cols-2 md:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6">
+        <CreateBoardButton organizationId={organizationId} disabled={false} />
         {boards.map((board) => {
           return <BoardCard key={board._id} board={board} />;
         })}
