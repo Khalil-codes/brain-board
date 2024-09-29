@@ -4,7 +4,7 @@ import OrganisationsList from "./lists";
 
 const Sidebar = () => {
   return (
-    <aside className="flex h-full min-w-14 flex-col items-center gap-y-2 border-r bg-background bg-blue-950 p-3 text-white">
+    <aside className="flex h-auto min-w-14 flex-col items-center gap-y-2 border-r bg-background bg-blue-950 p-3 text-white">
       <OrganisationsList />
       <NewButton />
     </aside>

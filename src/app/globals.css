@@ -72,7 +72,10 @@
     @apply bg-background text-foreground;
   }
 
-  html,
+  html {
+    @apply h-auto;
+  }
+
   body,
   :root {
     @apply h-full;

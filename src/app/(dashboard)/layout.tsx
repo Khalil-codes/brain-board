@@ -5,9 +5,9 @@ import OrganisationSidebar from "./_components/org-sidebar";
 
 const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <main className="flex h-full bg-background">
+    <main className="flex h-auto min-h-full bg-background">
       <Sidebar />
-      <div className="flex h-full w-full">
+      <div className="flex h-auto w-full">
         <OrganisationSidebar />
         <div className="flex flex-1 flex-col">
           <Navbar />
