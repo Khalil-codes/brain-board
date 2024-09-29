@@ -21,7 +21,21 @@ const BoardList = ({ organizationId, query }: Props) => {
   const boards = useQuery(api.boards.get, { orgId: organizationId });
 
   if (typeof boards === "undefined") {
-    return <div>Loading...</div>;
+    return (
+      <div className="flex flex-1 flex-col">
+        <h2 className="text-3xl font-semibold">
+          {query.favorites ? "Favorite" : "Team"} Boards
+        </h2>
+        <div className="mt-8 grid grid-cols-1 gap-5 pb-10 sm:grid-cols-2 md:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6">
+          <CreateBoardButton organizationId={organizationId} disabled={true} />
+          {Array(4)
+            .fill(0)
+            .map((_, index) => {
+              return <BoardCard.Skeleton key={index} />;
+            })}
+        </div>
+      </div>
+    );
   }
 
   if (query.search && boards.length === 0) {

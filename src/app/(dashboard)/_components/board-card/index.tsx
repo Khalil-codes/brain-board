@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import { Skeleton } from "@/components/ui/skeleton";
 import { cn } from "@/lib/utils";
 import { useAuth } from "@clerk/nextjs";
 import { Doc } from "@convex/_generated/dataModel";
@@ -62,3 +63,11 @@ const BoardCard = ({ board, isFavorite }: Props) => {
 };
 
 export default BoardCard;
+
+BoardCard.Skeleton = function BoardSkeleton() {
+  return (
+    <div className="aspect-[100/127] rounded-lg">
+      <Skeleton className="h-full w-full" />
+    </div>
+  );
+};

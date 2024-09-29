@@ -36,7 +36,7 @@ const CreateBoardButton = ({ organizationId, disabled }: Props) => {
     <button
       disabled={pending || disabled}
       onClick={handleClick}
-      className="col-span-1 flex aspect-[100/127] flex-col items-center justify-center rounded-lg border border-teal-200/60 bg-white hover:bg-teal-50 disabled:cursor-not-allowed disabled:opacity-75">
+      className="col-span-1 flex aspect-[100/127] flex-col items-center justify-center rounded-lg border border-teal-200/60 bg-white hover:bg-teal-50 disabled:cursor-not-allowed disabled:opacity-75 disabled:hover:bg-white">
       {pending ? (
         <Loader size={28} className="animate-spin" />
       ) : (
