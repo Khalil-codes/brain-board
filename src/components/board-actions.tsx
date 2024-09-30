@@ -8,13 +8,14 @@ import {
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
 import { cn } from "@/lib/utils";
-import { Link2, Trash } from "lucide-react";
+import { Link2, Pencil, Trash } from "lucide-react";
 import { toast } from "sonner";
 import useConvexMutation from "@/hooks/use-api-mutation";
 import { api } from "@convex/_generated/api";
 import type { Id } from "@convex/_generated/dataModel";
 import ConfirmModal from "./confirm-modal";
 import { Button } from "./ui/button";
+import { useRenameModal } from "@/store/use-rename-modal";
 
 type Props = {
   children: React.ReactNode;
@@ -22,7 +23,8 @@ type Props = {
   title: string;
 } & DropdownMenuContentProps;
 
-export const Actions = ({ children, id, ...props }: Props) => {
+export const Actions = ({ children, id, title, ...props }: Props) => {
+  const { onOpen } = useRenameModal();
   const { pending, mutate: remove } = useConvexMutation(api.board.remove);
 
   const onDelete = () => {
@@ -56,6 +58,11 @@ export const Actions = ({ children, id, ...props }: Props) => {
           className="flex cursor-pointer gap-2 p-3"
           onClick={onCopyLink}>
           <Link2 size={16} /> Copy Link
+        </DropdownMenuItem>
+        <DropdownMenuItem
+          className="flex cursor-pointer gap-2 p-3"
+          onClick={() => onOpen(id, title)}>
+          <Pencil size={16} /> Rename
         </DropdownMenuItem>
         <ConfirmModal
           header="Delete Board?"

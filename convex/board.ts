@@ -50,3 +50,25 @@ export const remove = mutation({
     await ctx.db.delete(args.id);
   },
 });
+
+export const update = mutation({
+  args: {
+    id: v.id("boards"),
+    title: v.string(),
+  },
+  handler: async (ctx, args) => {
+    const identity = await ctx.auth.getUserIdentity();
+    if (!identity) {
+      throw new ConvexError("You must be logged in to update a board");
+    }
+
+    const title = args.title?.trim();
+    if (!title || title.length > 60) {
+      throw new ConvexError("Title must be between 1 and 60 characters");
+    }
+
+    const board = await ctx.db.patch(args.id, { title });
+
+    return board;
+  },
+});
