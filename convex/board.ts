@@ -45,7 +45,16 @@ export const remove = mutation({
       throw new ConvexError("You must be logged in to remove a board");
     }
 
-    // TODO: Implement Delete Favourite Later
+    const favoritesExists = await ctx.db
+      .query("userFavorites")
+      .withIndex("by_board", (q) => q.eq("boardId", args.id))
+      .collect();
+
+    if (favoritesExists.length > 0) {
+      await Promise.all(
+        favoritesExists.map(async (fav) => await ctx.db.delete(fav._id))
+      );
+    }
 
     await ctx.db.delete(args.id);
   },
