@@ -72,3 +72,71 @@ export const update = mutation({
     return board;
   },
 });
+
+export const favorite = mutation({
+  args: { id: v.id("boards") },
+  handler: async (ctx, args) => {
+    const identity = await ctx.auth.getUserIdentity();
+    if (!identity) {
+      throw new ConvexError("You must be logged in to favorite a board");
+    }
+    const board = await ctx.db.get(args.id);
+
+    if (!board) {
+      throw new ConvexError("Board not available");
+    }
+
+    const userId = identity.subject;
+
+    const existingFavorite = await ctx.db
+      .query("userFavorites")
+      .withIndex("by_user_board_org", (q) =>
+        q.eq("userId", userId).eq("boardId", args.id).eq("orgId", board.orgId)
+      )
+      .unique();
+
+    if (existingFavorite) {
+      throw Error("Board already favorited by user");
+    }
+
+    await ctx.db.insert("userFavorites", {
+      boardId: board._id,
+      orgId: board.orgId,
+      userId,
+    });
+
+    return board;
+  },
+});
+
+export const unfavorite = mutation({
+  args: { id: v.id("boards") },
+  handler: async (ctx, args) => {
+    const identity = await ctx.auth.getUserIdentity();
+    if (!identity) {
+      throw new ConvexError("You must be logged in to favorite a board");
+    }
+    const board = await ctx.db.get(args.id);
+
+    if (!board) {
+      throw new ConvexError("Board not available");
+    }
+
+    const userId = identity.subject;
+
+    const existingFavorite = await ctx.db
+      .query("userFavorites")
+      .withIndex("by_user_board_org", (q) =>
+        q.eq("userId", userId).eq("boardId", args.id).eq("orgId", board.orgId)
+      )
+      .unique();
+
+    if (!existingFavorite) {
+      throw Error("Board not favorited by user");
+    }
+
+    await ctx.db.delete(existingFavorite._id);
+
+    return board;
+  },
+});

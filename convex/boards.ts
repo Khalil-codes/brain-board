@@ -10,11 +10,23 @@ export const get = query({
     if (!identity) {
       throw new ConvexError("You must be logged in to get boards");
     }
-    const boards = await ctx.db
+    const _boards = await ctx.db
       .query("boards")
       .withIndex("by_org", (q) => q.eq("orgId", args.orgId))
       .order("desc")
       .collect();
+
+    const boards = await Promise.all(
+      _boards.map(async (board) => {
+        const isFavoritedByUser = await ctx.db
+          .query("userFavorites")
+          .withIndex("by_user_board", (q) =>
+            q.eq("userId", identity.subject).eq("boardId", board._id)
+          )
+          .unique();
+        return { ...board, is_favorite: !!isFavoritedByUser };
+      })
+    );
 
     return boards;
   },
