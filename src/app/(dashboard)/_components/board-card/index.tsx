@@ -1,10 +1,11 @@
+import { Actions } from "@/components/board-actions";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { cn } from "@/lib/utils";
 import { useAuth } from "@clerk/nextjs";
 import { Doc } from "@convex/_generated/dataModel";
 import { formatDistanceToNow } from "date-fns";
-import { Star } from "lucide-react";
+import { MoreHorizontal, Star } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
@@ -29,8 +30,12 @@ const BoardCard = ({ board, isFavorite }: Props) => {
             />
           </div>
           <div className="absolute inset-0 bg-black opacity-0 transition-opacity group-hover:opacity-30" />
-          <div className="absolute right-2 top-2 flex items-center gap-2 opacity-0 transition-opacity group-hover:opacity-100">
-            {/* Controls */}
+          <div className="absolute right-0 top-0 flex items-center gap-2 opacity-0 transition-opacity group-hover:opacity-100">
+            <Actions id={board._id} title={board.title} side="right">
+              <button className="p-3 outline-none">
+                <MoreHorizontal className="text-white opacity-75 transition-opacity hover:opacity-100" />
+              </button>
+            </Actions>
           </div>
         </div>
         <div className="relative p-3">
