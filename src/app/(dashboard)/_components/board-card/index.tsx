@@ -1,14 +1,11 @@
 import { Actions } from "@/components/board-actions";
-import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
-import { cn } from "@/lib/utils";
-import { useAuth } from "@clerk/nextjs";
 import { Doc } from "@convex/_generated/dataModel";
-import { formatDistanceToNow } from "date-fns";
-import { MoreHorizontal, Star } from "lucide-react";
+import { MoreHorizontal } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import CardFooter from "./footer";
 
 type Props = {
   board: Doc<"boards">;
@@ -16,7 +13,6 @@ type Props = {
 };
 
 const BoardCard = ({ board, isFavorite }: Props) => {
-  const { userId } = useAuth();
   return (
     <Link href={`/board/${board._id}`}>
       <div className="group flex aspect-[100/127] flex-col justify-between rounded-lg border border-teal-200/60 bg-teal-50 hover:bg-teal-100/50">
@@ -38,30 +34,7 @@ const BoardCard = ({ board, isFavorite }: Props) => {
             </Actions>
           </div>
         </div>
-        <div className="relative p-3">
-          <h3 className="max-w-[calc(100%-1.25rem)] truncate text-sm">
-            {board.title}
-          </h3>
-          <p className="truncate text-xs text-muted-foreground opacity-0 transition-opacity group-hover:opacity-100">
-            {board.authorId === userId ? "You" : board.authorName},{" "}
-            {formatDistanceToNow(new Date(board._creationTime), {
-              addSuffix: true,
-            })}
-          </p>
-          <Button
-            variant="link"
-            size="icon"
-            disabled={false}
-            className={cn(
-              "absolute right-0 top-1.5 text-muted-foreground opacity-0 transition hover:text-blue-600 group-hover:opacity-100",
-              { "cursor-not-allowed opacity-75": false }
-            )}>
-            <Star
-              size={16}
-              className={isFavorite ? "fill-blue-600 text-blue-600" : ""}
-            />
-          </Button>
-        </div>
+        <CardFooter board={board} isFavorite={isFavorite} />
       </div>
     </Link>
   );

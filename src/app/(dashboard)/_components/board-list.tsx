@@ -58,7 +58,13 @@ const BoardList = ({ organizationId, query }: Props) => {
       <div className="mt-8 grid grid-cols-1 gap-5 pb-10 sm:grid-cols-2 md:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6">
         <CreateBoardButton organizationId={organizationId} disabled={false} />
         {boards.map((board) => {
-          return <BoardCard key={board._id} board={board} />;
+          return (
+            <BoardCard
+              key={board._id}
+              board={board}
+              isFavorite={board.is_favorite}
+            />
+          );
         })}
       </div>
     </div>
