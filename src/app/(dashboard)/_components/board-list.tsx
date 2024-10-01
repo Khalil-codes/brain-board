@@ -18,7 +18,11 @@ type Props = {
 };
 
 const BoardList = ({ organizationId, query }: Props) => {
-  const boards = useQuery(api.boards.get, { orgId: organizationId });
+  const boards = useQuery(api.boards.get, {
+    orgId: organizationId,
+    search: query.search,
+    favorites: !!query.favorites,
+  });
 
   if (typeof boards === "undefined") {
     return (
