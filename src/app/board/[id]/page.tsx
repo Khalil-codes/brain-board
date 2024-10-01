@@ -8,11 +8,7 @@ type Props = {
 };
 
 const BoardPage = ({ params }: Props) => {
-  return (
-    <div>
-      <Canvas />
-    </div>
-  );
+  return <Canvas id={params.id} />;
 };
 
 export default BoardPage;
