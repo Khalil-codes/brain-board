@@ -1,4 +1,5 @@
 import React from "react";
+import Canvas from "./_components/canvas";
 
 type Props = {
   params: {
@@ -7,7 +8,11 @@ type Props = {
 };
 
 const BoardPage = ({ params }: Props) => {
-  return <div>{params.id}</div>;
+  return (
+    <div>
+      <Canvas />
+    </div>
+  );
 };
 
 export default BoardPage;
