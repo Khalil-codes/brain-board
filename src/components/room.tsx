@@ -15,12 +15,9 @@ type Props = {
 
 export function Room({ children, id, fallback }: Props) {
   return (
-    <LiveblocksProvider
-      publicApiKey={process.env.NEXT_PUBLIC_LIVE_BLOCKS_API_KEY!}>
+    <LiveblocksProvider authEndpoint={"/api/liveblocks-auth"}>
       <RoomProvider id={id}>
-        <ClientSideSuspense fallback={fallback}>
-          {children}
-        </ClientSideSuspense>
+        <ClientSideSuspense fallback={fallback}>{children}</ClientSideSuspense>
       </RoomProvider>
     </LiveblocksProvider>
   );
