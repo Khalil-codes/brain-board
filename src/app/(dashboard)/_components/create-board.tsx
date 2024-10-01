@@ -1,6 +1,7 @@
 import useConvexMutation from "@/hooks/use-api-mutation";
 import { api } from "@convex/_generated/api";
 import { Loader, Plus } from "lucide-react";
+import { useRouter } from "next/navigation";
 import React from "react";
 import { toast } from "sonner";
 
@@ -11,6 +12,7 @@ type Props = {
 
 const CreateBoardButton = ({ organizationId, disabled }: Props) => {
   const { pending, mutate: create } = useConvexMutation(api.board.create);
+  const router = useRouter();
 
   const handleClick = async () => {
     if (!organizationId) return;
@@ -23,8 +25,8 @@ const CreateBoardButton = ({ organizationId, disabled }: Props) => {
         }),
       {
         loading: "Creating board...",
-        success: (data) => {
-          console.log(data);
+        success: (id) => {
+          router.push(`/board/${id}`);
           return "Board created!";
         },
         error: "Failed to create board",
