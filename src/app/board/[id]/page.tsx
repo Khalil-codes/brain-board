@@ -1,5 +1,7 @@
 import React from "react";
 import Canvas from "./_components/canvas";
+import { Room } from "@/components/room";
+import CanvasLoading from "./_components/loading";
 
 type Props = {
   params: {
@@ -8,7 +10,11 @@ type Props = {
 };
 
 const BoardPage = ({ params }: Props) => {
-  return <Canvas id={params.id} />;
+  return (
+    <Room id={params.id} fallback={<CanvasLoading />}>
+      <Canvas id={params.id} />;
+    </Room>
+  );
 };
 
 export default BoardPage;

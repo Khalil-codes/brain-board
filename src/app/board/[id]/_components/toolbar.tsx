@@ -1,3 +1,4 @@
+import { Skeleton } from "@/components/ui/skeleton";
 import React from "react";
 
 const Toolbar = () => {
@@ -13,6 +14,14 @@ const Toolbar = () => {
         <div>Undo</div>
         <div>Redo</div>
       </div>
+    </div>
+  );
+};
+
+Toolbar.Skeleton = function ToolbarSkeleton() {
+  return (
+    <div className="absolute left-2 top-1/2 flex -translate-y-1/2 flex-col gap-y-4 shadow-md">
+      <Skeleton className="h-[22rem] w-14 bg-neutral-300" />
     </div>
   );
 };
