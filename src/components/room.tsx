@@ -6,6 +6,8 @@ import {
   RoomProvider,
   ClientSideSuspense,
 } from "@liveblocks/react/suspense";
+import { LiveList, LiveMap, LiveObject } from "@liveblocks/client";
+import { Layer } from "@/types/canvas";
 
 type Props = {
   children: ReactNode;
@@ -16,7 +18,13 @@ type Props = {
 export function Room({ children, id, fallback }: Props) {
   return (
     <LiveblocksProvider authEndpoint={"/api/liveblocks-auth"} throttle={16}>
-      <RoomProvider id={id} initialPresence={{ cursor: null }}>
+      <RoomProvider
+        id={id}
+        initialPresence={{ cursor: null, selection: [] }}
+        initialStorage={{
+          layers: new LiveMap<string, LiveObject<Layer>>(),
+          layerIds: new LiveList<string>([]),
+        }}>
         <ClientSideSuspense fallback={fallback}>{children}</ClientSideSuspense>
       </RoomProvider>
     </LiveblocksProvider>
