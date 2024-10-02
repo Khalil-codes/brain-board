@@ -6,7 +6,7 @@ import Participants from "./participants";
 import Toolbar from "./toolbar";
 import type { Id } from "@convex/_generated/dataModel";
 import { CanvasMode, CanvasState } from "@/types/canvas";
-import { useHistory } from "@liveblocks/react/suspense";
+import { useCanRedo, useCanUndo, useHistory } from "@liveblocks/react/suspense";
 
 type Props = {
   id: Id<"boards">;
@@ -18,6 +18,8 @@ const Canvas = ({ id }: Props) => {
   });
 
   const history = useHistory();
+  const canRedo = useCanRedo();
+  const canUndo = useCanUndo();
 
   return (
     <main className="relative h-full w-full touch-none bg-neutral-100">
@@ -26,8 +28,8 @@ const Canvas = ({ id }: Props) => {
       <Toolbar
         state={canvasState}
         setState={setCanvasState}
-        canRedo={history.canRedo()}
-        canUndo={history.canUndo()}
+        canRedo={canRedo}
+        canUndo={canUndo}
         onRedo={history.redo}
         onUndo={history.undo}
       />
