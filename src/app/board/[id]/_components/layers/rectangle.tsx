@@ -1,6 +1,7 @@
 import React from "react";
 import { LayerProps } from "./types";
 import { RectangleLayer } from "@/types/canvas";
+import { colorToCSS } from "@/lib/utils";
 
 type Props = LayerProps<RectangleLayer>;
 
@@ -24,8 +25,8 @@ const Rectangle = ({
       width={width}
       height={height}
       strokeWidth={1}
-      stroke="transparent"
-      fill={"#000"}
+      stroke={selectionColor || "transparent"}
+      fill={fill ? colorToCSS(fill) : "#ccc"}
     />
   );
 };
