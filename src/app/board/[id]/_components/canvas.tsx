@@ -4,15 +4,16 @@ import React from "react";
 import Info from "./info";
 import Participants from "./participants";
 import Toolbar from "./toolbar";
+import type { Id } from "@convex/_generated/dataModel";
 
 type Props = {
-  id: string;
+  id: Id<"boards">;
 };
 
 const Canvas = ({ id }: Props) => {
   return (
     <main className="relative h-full w-full touch-none bg-neutral-100">
-      <Info />
+      <Info id={id} />
       <Participants />
       <Toolbar />
     </main>
