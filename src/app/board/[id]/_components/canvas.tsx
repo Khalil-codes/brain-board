@@ -50,9 +50,9 @@ const Canvas = ({ id }: Props) => {
   const layerIds = useStorage((root) => root.layerIds);
   const [camera, setCamera] = useState<Camera>({ x: 0, y: 0 });
   const [lastUsedColor, setLastUsedColor] = useState<Color>({
-    r: 0,
-    g: 0,
-    b: 0,
+    r: 82,
+    g: 82,
+    b: 82,
   });
 
   const history = useHistory();
