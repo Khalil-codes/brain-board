@@ -54,6 +54,7 @@ const SelectionBox = memo(({ onResizeHandlePointerDown }: Props) => {
             }}
             onPointerDown={(e) => {
               e.stopPropagation();
+              onResizeHandlePointerDown(Side.Top + Side.Left, bounds);
             }}
           />
 
@@ -70,6 +71,7 @@ const SelectionBox = memo(({ onResizeHandlePointerDown }: Props) => {
             }}
             onPointerDown={(e) => {
               e.stopPropagation();
+              onResizeHandlePointerDown(Side.Top, bounds);
             }}
           />
 
@@ -86,6 +88,7 @@ const SelectionBox = memo(({ onResizeHandlePointerDown }: Props) => {
             }}
             onPointerDown={(e) => {
               e.stopPropagation();
+              onResizeHandlePointerDown(Side.Top + Side.Right, bounds);
             }}
           />
 
@@ -102,6 +105,7 @@ const SelectionBox = memo(({ onResizeHandlePointerDown }: Props) => {
             }}
             onPointerDown={(e) => {
               e.stopPropagation();
+              onResizeHandlePointerDown(Side.Left, bounds);
             }}
           />
 
@@ -118,6 +122,7 @@ const SelectionBox = memo(({ onResizeHandlePointerDown }: Props) => {
             }}
             onPointerDown={(e) => {
               e.stopPropagation();
+              onResizeHandlePointerDown(Side.Bottom + Side.Left, bounds);
             }}
           />
 
@@ -134,6 +139,7 @@ const SelectionBox = memo(({ onResizeHandlePointerDown }: Props) => {
             }}
             onPointerDown={(e) => {
               e.stopPropagation();
+              onResizeHandlePointerDown(Side.Bottom, bounds);
             }}
           />
 
@@ -150,6 +156,7 @@ const SelectionBox = memo(({ onResizeHandlePointerDown }: Props) => {
             }}
             onPointerDown={(e) => {
               e.stopPropagation();
+              onResizeHandlePointerDown(Side.Bottom + Side.Right, bounds);
             }}
           />
 
@@ -166,6 +173,7 @@ const SelectionBox = memo(({ onResizeHandlePointerDown }: Props) => {
             }}
             onPointerDown={(e) => {
               e.stopPropagation();
+              onResizeHandlePointerDown(Side.Right, bounds);
             }}
           />
         </>
