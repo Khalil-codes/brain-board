@@ -6,6 +6,7 @@ import React, { memo } from "react";
 import Rectangle from "./layers/rectangle";
 import Ellipse from "./layers/ellipse";
 import Text from "./layers/text";
+import Note from "./layers/note";
 
 type Props = {
   id: string;
@@ -45,6 +46,16 @@ const LayerPreview = memo(
       case LayerType.Text:
         return (
           <Text
+            layer={layer}
+            id={id}
+            onLayerPointerDown={onLayerPointerDown}
+            selectionColor={selectionColor}
+            key={id}
+          />
+        );
+      case LayerType.Note:
+        return (
+          <Note
             layer={layer}
             id={id}
             onLayerPointerDown={onLayerPointerDown}
