@@ -274,7 +274,7 @@ const Canvas = ({ id }: Props) => {
         onPointerLeave={onPointerLeave}
         onPointerDown={onPointerDown}
         onPointerUp={onPointerUp}>
-        <g style={{ transform: `translate(${camera.x}, ${camera.y})` }}>
+        <g style={{ transform: `translate(${camera.x}px, ${camera.y}px)` }}>
           {layerIds.map((layerId) => (
             <LayerPreview
               key={layerId}
