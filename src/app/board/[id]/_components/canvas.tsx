@@ -211,9 +211,15 @@ const Canvas = ({ id }: Props) => {
     [canvasState, resizeSelectedLayer, camera, translateSelectedLayers]
   );
 
-  const onPointerLeave = useMutation(({ setMyPresence }) => {
-    setMyPresence({ cursor: null });
-  }, []);
+  const onPointerLeave = useMutation(
+    ({ setMyPresence }) => {
+      setMyPresence({ cursor: null });
+      if (canvasState.mode === CanvasMode.SelectionNet) {
+        setCanvasState({ mode: CanvasMode.None });
+      }
+    },
+    [canvasState.mode]
+  );
 
   const onPointerDown = useCallback(
     (e: React.PointerEvent) => {
