@@ -7,6 +7,8 @@ import Rectangle from "./layers/rectangle";
 import Ellipse from "./layers/ellipse";
 import Text from "./layers/text";
 import Note from "./layers/note";
+import Path from "./layers/path";
+import { colorToCSS } from "@/lib/utils";
 
 type Props = {
   id: string;
@@ -23,6 +25,16 @@ const LayerPreview = memo(
     }
 
     switch (layer.type) {
+      case LayerType.Path:
+        return (
+          <Path
+            x={layer.x}
+            y={layer.y}
+            points={layer.points}
+            fill={layer.fill ? colorToCSS(layer.fill) : "#ccc"}
+            onPointerDown={(e) => onLayerPointerDown(e, id)}
+          />
+        );
       case LayerType.Rectangle:
         return (
           <Rectangle
