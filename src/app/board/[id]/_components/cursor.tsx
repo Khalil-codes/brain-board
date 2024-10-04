@@ -45,4 +45,6 @@ const Cursor = memo(({ id }: Props) => {
   );
 });
 
+Cursor.displayName = "Cursor";
+
 export default Cursor;

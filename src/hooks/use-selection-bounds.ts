@@ -14,7 +14,7 @@ const useSelectionBounds = () => {
 
 export default useSelectionBounds;
 
-const boundingBox = (layers: Layer[]) => {
+const boundingBox = (layers: Layer[]): XYWH | null => {
   const first = layers[0];
   if (!layers.length || !first) return null;
 

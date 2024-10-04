@@ -4,6 +4,8 @@ import "./globals.css";
 import AuthProvider from "@/providers/clerk-convex-provider";
 import { Toaster } from "@/components/ui/sonner";
 import { ModalProvider } from "@/providers/modal-provider";
+import { Suspense } from "react";
+import Loading from "@/components/auth/loading";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -30,10 +32,12 @@ export default function RootLayout({
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <AuthProvider>
-          {children}
-          <ModalProvider />
-        </AuthProvider>
+        <Suspense fallback={<Loading />}>
+          <AuthProvider>
+            {children}
+            <ModalProvider />
+          </AuthProvider>
+        </Suspense>
         <Toaster richColors theme="light" />
       </body>
     </html>

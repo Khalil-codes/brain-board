@@ -4,7 +4,6 @@ import { cn } from "@/lib/utils";
 import { useAuth } from "@clerk/nextjs";
 import { api } from "@convex/_generated/api";
 import { Doc } from "@convex/_generated/dataModel";
-import { error } from "console";
 import { formatDistanceToNow } from "date-fns";
 import { Star } from "lucide-react";
 import React from "react";

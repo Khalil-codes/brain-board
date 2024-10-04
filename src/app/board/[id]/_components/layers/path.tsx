@@ -1,8 +1,6 @@
 import React from "react";
-import { LayerProps } from "./types";
-import { PathLayer } from "@/types/canvas";
 import getStroke from "perfect-freehand";
-import { colorToCSS, getSvgPathFromStroke } from "@/lib/utils";
+import { getSvgPathFromStroke } from "@/lib/utils";
 
 type Props = {
   x: number;

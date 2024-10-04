@@ -6,7 +6,7 @@ import ColorPicker from "./color-picker";
 import { useDeleteLayers } from "@/hooks/use-delete-layers";
 import Hint from "@/components/hint";
 import { Button } from "@/components/ui/button";
-import { BringToFront, Send, SendToBack, Trash2 } from "lucide-react";
+import { BringToFront, SendToBack, Trash2 } from "lucide-react";
 
 type Props = {
   camera: Camera;
@@ -109,5 +109,7 @@ const SelectionTools = memo(({ camera, setLastUsedColor }: Props) => {
     </div>
   );
 });
+
+SelectionTools.displayName = "SelectionTools";
 
 export default SelectionTools;
