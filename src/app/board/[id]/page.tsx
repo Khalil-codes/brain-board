@@ -29,7 +29,7 @@ export const generateMetadata = async ({ params }: Props) => {
     return {
       title: `${board.title} | Brain Board`,
     };
-  } catch (error) {
+  } catch {
     return {
       title: "Board not found",
     };

@@ -7,7 +7,7 @@ type Props = {
   };
 };
 
-export const generateMetadata = ({ searchParams }: { searchParams: any }) => {
+export const generateMetadata = ({ searchParams }: Props) => {
   if (searchParams.favorites === "true") {
     return {
       title: "Favorites | Brain Board",

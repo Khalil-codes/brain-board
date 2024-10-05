@@ -46,7 +46,7 @@ export const POST = async (request: Request) => {
     const { status, body } = await session.authorize();
 
     return new Response(body, { status });
-  } catch (error) {
+  } catch {
     return new Response(
       JSON.stringify({ error: "forbidden", reason: "Server Error" }),
       {
