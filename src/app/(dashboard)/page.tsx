@@ -1,8 +1,4 @@
-"use client";
-
-import { useOrganization } from "@clerk/nextjs";
-import EmptyOrganization from "./_components/empty-states/organization";
-import BoardList from "./_components/board-list";
+import Client from "./client";
 
 type Props = {
   searchParams: {
@@ -11,15 +7,28 @@ type Props = {
   };
 };
 
+export const generateMetadata = ({ searchParams }: { searchParams: any }) => {
+  if (searchParams.favorites === "true") {
+    return {
+      title: "Favorites | Brain Board",
+    };
+  }
+
+  if (searchParams.search) {
+    return {
+      title: `Search: ${searchParams.search} | Brain Board`,
+    };
+  }
+
+  return {
+    title: "Dashboard | Brain Board",
+  };
+};
+
 export default function Dashboard({ searchParams }: Props) {
-  const { organization } = useOrganization();
   return (
     <div className="flex flex-1 flex-col p-6">
-      {organization ? (
-        <BoardList organizationId={organization.id} query={searchParams} />
-      ) : (
-        <EmptyOrganization />
-      )}
+      <Client query={searchParams} />
     </div>
   );
 }
