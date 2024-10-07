@@ -1,36 +1,54 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# **Brain Board**
 
-## Getting Started
+Brain Board is a real-time collaboration and idea visualization platform. It allows users to sketch, organize, and brainstorm on a flexible, interactive digital canvas. The platform is designed to unlock creativity, share ideas, and facilitate seamless collaboration among team members, regardless of their location.
 
-First, run the development server:
+![Brain Board](./images/brain-board.gif)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## **Features**
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- Real-time collaboration on a digital canvas
+- Interactive and flexible canvas for sketching and organizing ideas
+- Support for multiple users and teams
+- Seamless integration with Clerk for authentication and Convex for data storage
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## **Technology Stack**
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- Frontend: Next.js, React, TypeScript
+- Backend: Convex, Clerk
+- Database: Convex
+- Authentication: Clerk
 
-## Learn More
+## **Components and Modules**
 
-To learn more about Next.js, take a look at the following resources:
+- `src/app/(dashboard)/client.tsx`: The main client-side component for the dashboard
+- `src/app/board/[id]/page.tsx`: The page component for individual boards
+- `src/components/auth/loading.tsx`: The loading component for authentication
+- `src/components/ui/skeleton.tsx`: The skeleton component for UI elements
+- `convex/_generated/api.d.ts`: The generated API utility for Convex
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## **API Documentation**
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+The Convex API is used for data storage and retrieval. You can find the API documentation in the `convex/_generated/api.d.ts` file.
 
-## Deploy on Vercel
+## **Getting Started**
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+To get started with Brain Board, follow these steps:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. Clone the repository: `git clone https://github.com/your-username/brain-board.git`
+2. Install dependencies: `npm install` or `yarn install`
+3. Start the development server: `npm run dev` or `yarn dev`
+4. Open your browser and navigate to `http://localhost:3000`
+
+## **Contributing**
+
+Contributions are welcome! If you'd like to contribute to Brain Board, please fork the repository and submit a pull request.
+
+## **License**
+
+Brain Board is licensed under the MIT License.
+
+## **Acknowledgments**
+
+- Clerk for authentication and Convex for data storage
+- Next.js and React for the frontend framework
+- TypeScript for type safety
